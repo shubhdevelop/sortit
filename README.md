@@ -1,10 +1,16 @@
 # File Organizer
 
-A Go script that automatically organizes files from a dump directory into destination directories based on filename patterns (prefix/suffix matching) defined in a YAML configuration. Idea of this script comes from the fact that Mac saves all the screenshot and screen recording on Desktop by default and I am lazy enough to find the setting to change the destination folder.
+A Go script that automatically organizes files from a dump directory into destination directories based on filename patterns (prefix/suffix matching) defined in a YAML configuration.
 
-Morever having this also gives joy to  my unonrganised ass, but OCD brain. I love collecting pdfs paper wallpapers, that I might never read and use in future, I love collecting things. Also, I have my hands dirty with creative designing as well, and I am well aware of concept of dump/swipe folders, where people intially dump/swipe things in that folder, and later oragnise them in their intended folders, this step of organising is unavoidable do it now or later and this sometime is dauting and can cause leds to procrastination.
+# The Genesis
+Idea of this script comes from the fact that Mac saves all the screenshot and screen recordings on Desktop by default and I am lazy enough to find the setting to change the destination folder. But that's not it
 
-I propose a solution to add a prefix_ to the file being downloaded, which can be sorted later in their intended folders 
+Morever having this also gives joy to my unonrganised ass, but OCD brain, yeah they can coexist.
+More background, I love collecting PDFs white paper, anime wallpapers etc, that I might never read or use in foreseeable future.
+
+Also, I have my hands dirty with creative designing as well, and I am well aware of concept of dump/swipe folders, where people intially dump/swipe things in that folder, and later oragnise them in their intended folders, this step of organising is unavoidable. You have do it now or later and this sometime is dauting and leds to procrastination when folders become big.
+
+I propose a million dollar solution to add a prefix_ to the file being downloaded. Why this Works, it works because it's easier to remember to add prefix, than transversing through folder structure, everytime you download something, aas well as  categorising and moving each files one by one later. 
 
 ## Features
 

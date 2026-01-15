@@ -37,8 +37,8 @@ class Prefix < Formula
   def caveats
     <<~EOS
       To get started:
-      1. Copy the example config: cp #{pkgshare}/config.example.yaml ~/.prefix.yaml
-      2. Edit ~/.prefix.yaml with your dump directory and destinations
+      1. Copy the example config: cp #{pkgshare}/config.example.yaml ~/.config/prefix/prefix.yaml
+      2. Edit ~/.config/prefix/prefix.yaml with your dump directory and destinations
       3. Run manually: prefix
       
       To run as a background service (starts on boot):

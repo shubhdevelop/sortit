@@ -47,11 +47,14 @@ brew install shubhdevelop/prefix/prefix
 
 After installation, set up your config:
 ```bash
+# Create config directory
+mkdir -p ~/.config/prefix
+
 # Copy the example config
-cp $(brew --prefix)/share/prefix/config.example.yaml ~/.prefix.yaml
+cp $(brew --prefix)/share/prefix/config.example.yaml ~/.config/prefix/prefix.yaml
 
 # Edit the config file
-nano ~/.prefix.yaml
+nano ~/.config/prefix/prefix.yaml
 ```
 
 ### Manual Installation
@@ -97,7 +100,7 @@ destinations:
   - If both prefix and suffix are specified, files must match BOTH
   - First matching destination wins
 
-The configuration file should be located at `~/.prefix.yaml` by default.
+The configuration file should be located at `~/.config/prefix/prefix.yaml` by default.
 
 ---
 
@@ -112,7 +115,7 @@ prefix
 ```
 
 The program will:
-- Load configuration from `~/.prefix.yaml`
+- Load configuration from `~/.config/prefix/prefix.yaml`
 - Organize existing files in the dump directory
 - Watch for new files and organize them automatically
 - Run until you press Ctrl+C
@@ -150,7 +153,7 @@ The service will:
 - Log to `~/Library/Logs/prefix.log`
 - Run in the background without a terminal
 
-**Note:** Make sure you've configured `~/.prefix.yaml` before installing the service.
+**Note:** Make sure you've configured `~/.config/prefix/prefix.yaml` before installing the service.
 
 #### Service Management Details
 
@@ -201,14 +204,14 @@ This stops and removes the LaunchAgent. The binary and config file remain instal
 #### Service Troubleshooting
 
 **Service won't start:**
-1. Check if config exists: `ls -la ~/.prefix.yaml`
+1. Check if config exists: `ls -la ~/.config/prefix/prefix.yaml`
 2. Verify config is valid: `prefix` (run manually to test)
 3. Check error logs: `cat ~/Library/Logs/prefix.error.log`
 4. Check system logs: `log show --predicate 'process == "prefix"' --last 5m`
 
 **Service stops unexpectedly:**
 1. Check the error log: `tail -50 ~/Library/Logs/prefix.error.log`
-2. Verify dump directory exists in your `~/.prefix.yaml` config
+2. Verify dump directory exists in your `~/.config/prefix/prefix.yaml` config
 3. Check permissions for dump and destination directories
 
 **"Operation not permitted" error (macOS):**
@@ -246,15 +249,15 @@ The service script automatically handles both:
 The script detects which method to use automatically.
 
 **Logs Location:**
-- **Standard output**: `~/Library/Logs/prefix.log`
-- **Standard error**: `~/Library/Logs/prefix.error.log`
-- **Application log**: `app.log` (in the working directory, typically `~`)
+- **Standard output**: `~/Library/Logs/prefix.log` (LaunchAgent stdout)
+- **Standard error**: `~/Library/Logs/prefix.error.log` (LaunchAgent stderr)
+- **Application log**: `~/.config/prefix/app.log` (application log file)
 
 **Best Practices:**
 1. Test manually first: Always test your config by running `prefix` manually before installing as a service
 2. Monitor logs: Check logs after installation to ensure everything is working
 3. Use status command: Regularly check `prefix-service status` to verify it's running
-4. Keep config backed up: Your `~/.prefix.yaml` config is important - keep it backed up
+4. Keep config backed up: Your `~/.config/prefix/prefix.yaml` config is important - keep it backed up
 5. Update carefully: When updating prefix, restart the service:
    ```bash
    brew upgrade prefix
@@ -484,8 +487,9 @@ class Prefix < Formula
   def caveats
     <<~EOS
       To get started:
-      1. Copy the example config: cp #{pkgshare}/config.example.yaml ~/.prefix.yaml
-      2. Edit ~/.prefix.yaml with your dump directory and destinations
+      1. Create config directory: mkdir -p ~/.config/prefix
+      2. Copy the example config: cp #{pkgshare}/config.example.yaml ~/.config/prefix/prefix.yaml
+      3. Edit ~/.config/prefix/prefix.yaml with your dump directory and destinations
       3. Run: prefix
     EOS
   end

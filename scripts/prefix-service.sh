@@ -54,9 +54,9 @@ case "$1" in
         fi
         
         # Check if config exists
-        if [ ! -f "$HOME/.prefix.yaml" ]; then
-            echo "Warning: Config file not found at ~/.prefix.yaml"
-            echo "Please create and configure ~/.prefix.yaml before starting the service"
+        if [ ! -f "$HOME/.config/prefix/prefix.yaml" ]; then
+            echo "Warning: Config file not found at ~/.config/prefix/prefix.yaml"
+            echo "Please create and configure ~/.config/prefix/prefix.yaml before starting the service"
             read -p "Continue anyway? (y/N) " -n 1 -r
             echo
             if [[ ! $REPLY =~ ^[Yy]$ ]]; then
@@ -202,8 +202,8 @@ EOF
         fi
         
         echo ""
-        echo "Config: $HOME/.prefix.yaml"
-        if [ -f "$HOME/.prefix.yaml" ]; then
+        echo "Config: $HOME/.config/prefix/prefix.yaml"
+        if [ -f "$HOME/.config/prefix/prefix.yaml" ]; then
             echo "  ✓ Config file exists"
         else
             echo "  ✗ Config file missing"
@@ -222,6 +222,12 @@ EOF
             echo "  Errors: $HOME/Library/Logs/prefix.error.log ($ERR_SIZE)"
         else
             echo "  Errors: $HOME/Library/Logs/prefix.error.log (no errors)"
+        fi
+        if [ -f "$HOME/.config/prefix/app.log" ]; then
+            APP_LOG_SIZE=$(ls -lh "$HOME/.config/prefix/app.log" | awk '{print $5}')
+            echo "  App log: $HOME/.config/prefix/app.log ($APP_LOG_SIZE)"
+        else
+            echo "  App log: $HOME/.config/prefix/app.log (not created yet)"
         fi
         ;;
     
